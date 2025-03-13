@@ -65,7 +65,7 @@
             </div>
             <div class="form-group row">
                 <div class="offset-5 col-7">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" name="proses" class="btn btn-primary" value="Simpan">Simpan</button>
                 </div>
             </div>
         </form>
@@ -74,7 +74,7 @@
     <footer class="mt-5" style="bottom: 0; left: 0; right: 0; position: fixed;">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">Develop By @ahusa &copy;<?= date("Y") ?></a>
+                <a class="navbar-brand" href="#">Develop By @kiaaa &copy;<?= date("Y") ?></a>
             </div>
         </nav>
     </footer>
