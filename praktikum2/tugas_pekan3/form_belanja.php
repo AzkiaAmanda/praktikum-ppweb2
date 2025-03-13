@@ -81,32 +81,35 @@
     </div>
 
     <?php
-    // MENANGKAP DATA YANG DI-INPUT
-    $nama_customer = $_POST['nama'];
-    $produk = $_POST['produk'];
-    $jumlah_beli = $_POST['jumlah'];
-    $total_belanja = $_POST['proses'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // MENANGKAP DATA YANG DI-INPUT
+        $nama_customer = isset($_POST['nama']) ? $_POST['nama'] : '';
+        $produk = isset($_POST['produk']) ? $_POST['produk'] : '';
+        $jumlah_beli = isset($_POST['jumlah']) ? $_POST['jumlah'] : 0;
 
-    // MENGHITUNG TOTAL BELANJA MENGGUNAKAN IF ELSE ATAU SWITCH
-    $harga_produk = [
-        "Televisi" => 4200000,
-        "Kulkas" => 3100000,
-        "Mesin Cuci" => 3800000
-    ];
+        // HARGA PRODUK
+        $harga_produk = [
+            "Televisi" => 4200000,
+            "Kulkas" => 3100000,
+            "Mesin Cuci" => 3800000
+        ];
 
-    if (array_key_exists($produk, $harga_produk)) {
-        $total_belanja = $harga_produk[$produk] * $jumlah_beli;
-    } else{
-        $total_belanja = 0;
-    }
+        // MENGHITUNG TOTAL BELANJA MENGGUNAKAN IF ELSE
+        if (array_key_exists($produk, $harga_produk)) {
+            $total_belanja = $harga_produk[$produk] * $jumlah_beli;
+        } else{
+            $total_belanja = 0;
+        }
 
-    // MENCETAK HASIL
+        // MENCETAK HASIL
         echo '<h4>Detail Pembelian</h4>';
-        echo '<br><strong>Nama Customer : </strong>' . $nama_customer;
-        echo '<br><strong>Produk Pilihan : </strong>' . $produk;
-        echo '<br><strong>Jumlah Beli : </strong>' . $jumlah_beli;
-        echo '<br><strong>Total Belanja : </strong>Rp ' . number_format($total_belanja, 0, ',', ',');
+        echo '<strong>Nama Customer      : </strong>' . htmlspecialchars($nama_customer);
+        echo '<br><strong>Produk Pilihan : </strong>' . htmlspecialchars($produk);
+        echo '<br><strong>Jumlah Beli    : </strong>' . htmlspecialchars($jumlah_beli);
+        echo '<br><strong>Total Belanja  : </strong>Rp ' . number_format($total_belanja, 0, ',', '.');
+    }
     ?>
+
 
     </div>
 </body>
